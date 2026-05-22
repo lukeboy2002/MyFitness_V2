@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/forms';
+@plugin "flowbite/plugin";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source "../../node_modules/flowbite/**/*.js";
+@source "../../node_modules/flowbite";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: Figtree, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-theme: 'Anton SC', sans-serif;
+
+    --color-background: var(--background);
+    --color-primary: var(--primary);
+    --color-secondary: var(--secondary);
+    --color-muted: var(--muted);
+}
+
+:root {
+    --background: hsl(33.33, 100%, 96.47%);
+    --primary: hsl(215, 27.91%, 16.86%);
+    --secondary: hsl(24.6 95% 53.1%); /* orange-500 */
+    --muted: hsl(220 8.9% 46.1%); /*gray-500 */
+}
+
+.dark {
+    --background: hsl(20, 14.29%, 4.12%);
+    --primary: hsl(60, 9.09%, 97.84%);
+    --secondary: hsl(20.5 90.2% 48.2%); /* orange-600 */
+    --muted: hsl(24, 5.43%, 63.92%);
+}
+
+[x-cloak] {
+    display: none;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
+}

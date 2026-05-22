@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "laravel-boost": {
+      "command": "/Users/antoine/Library/Application Support/Herd/bin/php84",
+      "args": [
+        "/Users/antoine/Herd/MyFitness_V2/artisan",
+        "boost:mcp"
+      ]
+    }
+  }
+}
