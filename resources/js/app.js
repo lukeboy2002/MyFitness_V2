@@ -1,4 +1,5 @@
 import 'flowbite';
+import './ToggleTheme.js';
 
 import Alpine from 'alpinejs';
 
