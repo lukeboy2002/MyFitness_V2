@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 //    return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::passkeys();
+
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/', function () {
         return view('dashboard');

@@ -4,21 +4,26 @@
 
     <x-card.default class="relative">
         <x-heading.card-top>{{ __('Login') }}</x-heading.card-top>
-        <div class="flex justify-end">
-            @if (Route::has('register'))
-                <x-link.default href="{{ route('register') }}">
-                    {{ __('Register') }}
-                </x-link.default>
-            @endif
+
+        <div class="mt-4">
+            <x-authenticate-passkey/>
         </div>
+
+        <div class="flex items-center my-6">
+            <div aria-hidden="true" class="w-full border-t border-secondary"></div>
+            <div class="relative flex justify-center">
+                <span class="bg-surface px-2 text-sm text-muted">Or</span>
+            </div>
+            <div aria-hidden="true" class="w-full border-t border-secondary"></div>
+        </div>
+
         <form method="POST" action="{{ route('login') }}" class="mt-4 space-y-4">
             @csrf
-
             <!-- Email Address / Username -->
             <div>
                 <x-form.input name="login" :label="__('Email or username')" type="text" :value="old('login')"
                               required
-                              autofocus autocomplete="username"/>
+                              autocomplete="username"/>
                 <x-form.error :messages="$errors->get('login')" class="mt-2"/>
             </div>
 
@@ -36,11 +41,20 @@
                     name="remember"
                     :label="__('Remember me')"
                 />
-                @if (Route::has('password.request'))
-                    <x-link.default href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </x-link.default>
-                @endif
+                <div class="flex items-center gap-1">
+                    @if (Route::has('password.request'))
+                        <x-link.default href="{{ route('password.request') }}">
+                            {{ __('Forgot your password?') }}
+                        </x-link.default>
+                    @endif
+                    <span>/</span>
+                    @if (Route::has('register'))
+                        <x-link.default href="{{ route('register') }}">
+                            {{ __('Register') }}
+                        </x-link.default>
+                    @endif
+
+                </div>
             </div>
 
             <div class="flex items-center justify-end">
@@ -49,14 +63,6 @@
                 </x-button.primary>
             </div>
 
-            {{--            <div class="flex items-center my-6">--}}
-            {{--                <div aria-hidden="true" class="w-full border-t border-secondary"></div>--}}
-            {{--                <div class="relative flex justify-center">--}}
-            {{--                    <span--}}
-            {{--                        class="bg-surface px-2 text-sm text-muted">Or</span>--}}
-            {{--                </div>--}}
-            {{--                <div aria-hidden="true" class="w-full border-t border-secondary"></div>--}}
-            {{--            </div>--}}
 
             {{--            <div class="flex flex-col items-center justify-between space-y-6">--}}
             {{--                <x-button.social icon="user-key">--}}
