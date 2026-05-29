@@ -12,36 +12,36 @@
 
             <!-- Name -->
             <div>
-                <x-form.input name="name" :label="__('Name')" :value="old('name')" required autofocus
-                              autocomplete="name"/>
+                <x-form.auth_input name="name" :label="__('Name')" :value="old('name')" required autofocus
+                                   autocomplete="name"/>
                 <x-input-error :messages="$errors->get('name')" class="mt-2"/>
             </div>
 
             <!-- Username -->
             <div class="mt-4">
-                <x-form.input name="username" :label="__('Username')" :value="old('username')" required
-                              autocomplete="username"/>
+                <x-form.auth_input name="username" :label="__('Username')" :value="old('username')" required
+                                   autocomplete="username"/>
                 <x-input-error :messages="$errors->get('username')" class="mt-2"/>
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-form.input name="email" :label="__('Email')" type="email" :value="old('email')" required
-                              autocomplete="username"/>
+                <x-form.auth_input name="email" :label="__('Email')" type="email" :value="old('email')" required
+                                   autocomplete="username"/>
                 <x-input-error :messages="$errors->get('email')" class="mt-2"/>
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-form.input name="password" :label="__('Password')" type="password" required
-                              autocomplete="new-password"/>
+                <x-form.auth_input name="password" :label="__('Password')" type="password" required
+                                   autocomplete="new-password"/>
                 <x-input-error :messages="$errors->get('password')" class="mt-2"/>
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-form.input name="password_confirmation" :label="__('Confirm Password')" type="password" required
-                              autocomplete="new-password"/>
+                <x-form.auth_input name="password_confirmation" :label="__('Confirm Password')" type="password" required
+                                   autocomplete="new-password"/>
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2"/>
             </div>
 

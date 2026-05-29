@@ -1,9 +1,5 @@
 <x-guest-layout pageTitle="Forgot Password">
 
-
-    <!-- Session Status -->
-
-
     <x-card.default class="relative">
         <x-heading.card-top>{{ __('Forgot Password') }}</x-heading.card-top>
         <div class="mt-4 mb-6 text-xs text-muted">
@@ -15,8 +11,8 @@
 
             <!-- Email Address -->
             <div>
-                <x-form.input name="email" :label="__('Email')" type="email" :value="old('email')" required
-                              autocomplete="username"/>
+                <x-form.auth_input name="email" :label="__('Email')" type="email" :value="old('email')" required
+                                   autocomplete="username"/>
                 <x-form.error :messages="$errors->get('email')" class="mt-2"/>
                 <x-auth-session-status class="mb-4" :status="session('status')"/>
             </div>

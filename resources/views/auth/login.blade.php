@@ -21,16 +21,16 @@
             @csrf
             <!-- Email Address / Username -->
             <div>
-                <x-form.input name="login" :label="__('Email or username')" type="text" :value="old('login')"
-                              required
-                              autocomplete="username"/>
+                <x-form.auth_input name="login" :label="__('Email or username')" type="text" :value="old('login')"
+                                   required
+                                   autocomplete="username"/>
                 <x-form.error :messages="$errors->get('login')" class="mt-2"/>
             </div>
 
             <!-- Password -->
             <div>
-                <x-form.input name="password" :label="__('Password')" type="password" required
-                              autocomplete="current-password"/>
+                <x-form.auth_input name="password" :label="__('Password')" type="password" required
+                                   autocomplete="current-password"/>
                 <x-form.error :messages="$errors->get('password')" class="mt-2"/>
             </div>
 
