@@ -15,11 +15,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::factory()->create([
+            'name' => 'Admin',
+            'username' => 'admin',
+            'email' => 'admin@myfitness.test',
+            'password' => bcrypt('adminadmin'),
+            'is_admin' => true,
+        ]);
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Antoine Hendriks',
+            'username' => 'Antoine',
+            'email' => 'antoine@myfitness.test',
+            'password' => bcrypt('password'),
+            'is_admin' => false,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Alice Hendriks',
+            'username' => 'Alice',
+            'email' => 'alice@myfitness.test',
+            'password' => bcrypt('password'),
+            'is_admin' => false,
+        ]);
+
+        $this->call([
+            CarouselSeeder::class,
         ]);
     }
 }

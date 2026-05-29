@@ -14,9 +14,19 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('username')->unique()->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('google_id')->nullable()->unique();
+            $table->string('facebook_id')->nullable()->unique();
+            $table->string('apple_id')->nullable()->unique();
+            $table->string('avatar')->nullable();
+            $table->boolean('is_admin')->nullable();
+            $table->enum('preferred_language', ['en', 'nl'])->default('en');
+            $table->enum('preferred_theme', ['light', 'dark', 'system'])->default('system');
+            $table->enum('preferred_weight', ['kg', 'lbs'])->default('kg');
+            $table->enum('preferred_distance', ['km', 'mi'])->default('km');
             $table->rememberToken();
             $table->timestamps();
         });

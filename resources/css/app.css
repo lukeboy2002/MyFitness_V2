@@ -16,23 +16,34 @@
     --font-theme: 'Anton SC', sans-serif;
 
     --color-background: var(--background);
+    --color-surface: var(--surface);
+    --color-surface-secondary: var(--surface-secondary);
     --color-primary: var(--primary);
     --color-secondary: var(--secondary);
     --color-muted: var(--muted);
+    --color-border: var(--border);
+    --color-success: hsl(142.09, 70.56%, 45.29%);
+    --color-error: hsl(0, 84.24%, 60.2%);
 }
 
 :root {
     --background: hsl(33.33, 100%, 96.47%);
+    --surface: hsl(0, 0%, 100%);
+    --surface-secondary: hsl(34.29, 100%, 91.76%);
     --primary: hsl(215, 27.91%, 16.86%);
     --secondary: hsl(24.6 95% 53.1%); /* orange-500 */
     --muted: hsl(220 8.9% 46.1%); /*gray-500 */
+    --border: hsl(32.14, 97.67%, 83.14%);
 }
 
 .dark {
     --background: hsl(20, 14.29%, 4.12%);
+    --surface: hsl(24, 9.8%, 10%);
+    --surface-secondary: hsl(12, 6.49%, 15.1%);
     --primary: hsl(60, 9.09%, 97.84%);
     --secondary: hsl(20.5 90.2% 48.2%); /* orange-600 */
     --muted: hsl(24, 5.43%, 63.92%);
+    --border: hsl(30, 6.25%, 25.1%);
 }
 
 [x-cloak] {
