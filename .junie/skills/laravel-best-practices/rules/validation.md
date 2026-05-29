@@ -5,6 +5,7 @@
 Extract validation from controllers into dedicated Form Request classes.
 
 Incorrect:
+
 ```php
 public function store(Request $request)
 {
@@ -16,6 +17,7 @@ public function store(Request $request)
 ```
 
 Correct:
+
 ```php
 public function store(StorePostRequest $request)
 {
@@ -25,14 +27,15 @@ public function store(StorePostRequest $request)
 
 ## Array vs. String Notation for Rules
 
-Array syntax is more readable and composes cleanly with `Rule::` objects. Prefer it in new code, but check existing Form Requests first and match whatever notation the project already uses.
+Array syntax is more readable and composes cleanly with `Rule::` objects. Prefer it in new code, but check existing Form
+Requests first and match whatever notation the project already uses.
 
 ```php
 // Preferred for new code
-'email' => ['required', 'email', Rule::unique('users')],
+'email' => ['required', 'email', Rule::unique('avatars')],
 
 // Follow existing convention if the project uses string notation
-'email' => 'required|email|unique:users',
+'email' => 'required|email|unique:avatars',
 ```
 
 ## Always Use `validated()`
@@ -40,11 +43,13 @@ Array syntax is more readable and composes cleanly with `Rule::` objects. Prefer
 Get only validated data. Never use `$request->all()` for mass operations.
 
 Incorrect:
+
 ```php
 Post::create($request->all());
 ```
 
 Correct:
+
 ```php
 Post::create($request->validated());
 ```

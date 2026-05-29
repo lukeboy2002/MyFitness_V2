@@ -4,13 +4,7 @@
     <form id="passkey-login-form" method="POST" action="{{ route('passkeys.login') }}">
         @csrf
     </form>
-
-    @if($message = session()->get('authenticatePasskey::message'))
-        <div class="bg-red-100 text-red-700 p-4 border border-red-400 rounded">
-            {{ $message }}
-        </div>
-    @endif
-
+    
     <div onclick="authenticateWithPasskey()">
         @if ($slot->isEmpty())
             <div
@@ -22,4 +16,9 @@
             {{ $slot }}
         @endif
     </div>
+    @if($message = session()->get('authenticatePasskey::message'))
+        <div class="mt-2 mb-4 font-medium text-xs text-error flex gap-2 items-center">
+            <x-lucide-triangle-alert class="h-4 w-4 mr-1"/>{{ $message }}
+        </div>
+    @endif
 </div>

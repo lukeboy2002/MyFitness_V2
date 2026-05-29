@@ -1,19 +1,42 @@
 @props(['pageTitle' => ''])
 
     <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{
+    sidebarOpen: localStorage.getItem('sidebarOpen') === 'true',
+    toggleSidebar() {
+        this.sidebarOpen = !this.sidebarOpen;
+        localStorage.setItem('sidebarOpen', this.sidebarOpen);
+    }
+}"
+      x-on:appearance-updated.window="
+        if ($event.detail.theme === 'dark' || ($event.detail.theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+      "
+      x-on:language-updated.window="window.location.reload()">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <script>
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark')
+    <script data-navigate-once>
+        window.applyTheme = () => {
+            const theme = @js(auth()->user()?->preferred_theme ?? 'system');
+
+            if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark')
+            }
         }
+
+        window.applyTheme();
+
+        document.addEventListener('livewire:navigated', window.applyTheme);
     </script>
+    @livewireStyles
 
     <title>{{ $pageTitle }} - {{ config('app.name', 'Laravel') }}</title>
 
@@ -28,29 +51,29 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
     @stack('styles')
 </head>
-<body class="font-sans antialiased bg-background text-foreground transition-colors duration-300">
-<div class="min-h-screen bg-background">
-    @include('layouts.navigation')
+<body class="bg-background text-primary font-sans antialiased transition-colors duration-200 min-h-dvh">
 
-    <!-- Page Heading -->
-    @isset($header)
-        <header class="bg-white dark:bg-gray-800 shadow-sm">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
+<x-menu.sidebar/>
+
+<div>
+    <div class="flex flex-col min-h-screen transition-all duration-300"
+         :class="sidebarOpen ? 'md:pl-48' : 'md:pl-16 lg:pl-48'">
+        <x-menu.top/>
+
+        <main class="pb-24 md:pb-8 flex-1">
+            <div class="px-4 py-5 max-w-5xl mx-auto w-full">
+                {{ $slot }}
             </div>
-        </header>
-    @endisset
-
-    <!-- Page Content -->
-    <main>
-        {{ $slot }}
-    </main>
-
-    @livewireScripts
-    @stack('scripts')
+        </main>
+    </div>
 </div>
+
+<x-menu.phone/>
+
+@livewireScripts
+@stack('scripts')
+
 </body>
 </html>

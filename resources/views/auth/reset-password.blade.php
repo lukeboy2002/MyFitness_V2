@@ -10,23 +10,23 @@
 
             <!-- Email Address -->
             <div>
-                <x-form.input name="email" :label="__('Email')" type="email" :value="old('email', $request->email)"
-                              required
-                              autocomplete="username"/>
+                <x-form.auth_input name="email" :label="__('Email')" type="email" :value="old('email', $request->email)"
+                                   required
+                                   autocomplete="username"/>
                 <x-input-error :messages="$errors->get('email')" class="mt-2"/>
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-form.input name="password" :label="__('Password')" type="password" required
-                              autocomplete="new-password"/>
+                <x-form.auth_input name="password" :label="__('Password')" type="password" required
+                                   autocomplete="new-password"/>
                 <x-input-error :messages="$errors->get('password')" class="mt-2"/>
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-form.input name="password_confirmation" :label="__('Confirm Password')" type="password" required
-                              autocomplete="new-password"/>
+                <x-form.auth_input name="password_confirmation" :label="__('Confirm Password')" type="password" required
+                                   autocomplete="new-password"/>
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2"/>
             </div>
 
